@@ -1,0 +1,144 @@
+import {React,useEffect} from  'react'
+import {Link,useNavigate} from 'react-router-dom'
+import { Formik,Form,useField } from 'formik'
+import * as Yup from 'yup'
+
+const TextInput = ({ label,...props }) => {
+    const [field,meta] = useField(props)
+    return(
+        <div className="fields">
+            <label htmlFor={props.id || props.name}>{label}</label>
+            <input {...field} {...props}></input>
+            {
+                meta.touched && meta.error ?(
+                    <p className="error">{meta.error}</p>
+                ):null
+            }
+        </div>
+    )
+}
+
+const MySelect = ({ label, ...props }) => {
+    const [field, meta] = useField(props);
+    return (
+      <div className="fields">
+        <label htmlFor={props.id || props.name}>{label}</label>
+        <select {...field} {...props} />
+        {
+            meta.touched && meta.error ?(
+                <p className="error">{meta.error}</p>
+            ):null
+        }
+      </div>
+    )
+}
+
+function Register(){
+    const navigate = useNavigate()
+    return(
+        <>
+            <Formik
+                initialValues = {{
+                    name: '',
+                    email: '',
+                    password: '',
+                    confirm_password: '',
+                    roll: ''
+                }}
+                        
+                validationSchema = {
+                    Yup.object({
+                        name: Yup.string()
+                            .required('Required'),
+                        email: Yup.string()
+                            .email('Invalid Email')
+                            .required('Required'),
+                        password: Yup.string()
+                            .min(4,'Password must be greater than 4 characters')
+                            .required('Required'),
+                        confirm_password: Yup.string()
+                            .oneOf(
+                            [Yup.ref('password')],
+                            'Both password needs to be same'
+                            )
+                    })
+                }
+
+                    onSubmit={(values, { setSubmitting,resetForm }) => {
+                        setTimeout(async () => {
+                            console.log(values)
+                            const res = await fetch("/",{
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    name: values.name,
+                                    email : values.email,
+                                    password : values.password,
+                                    cpassword: values.confirm_password,
+                                    roll: values.roll
+                                })
+                            })
+
+                            const data = await res.json()
+                            console.log(data)
+                            if(res.status === 422 || !data){
+                                alert(data.error)
+                            }
+                            else{
+                                navigate('login')
+                            }
+                        }, 400);
+                    }}
+                >
+                    <Form method="POST" className="form">
+                            <div>
+                                <h3>Register</h3>
+                            </div>
+
+                            <TextInput
+                                name="name"
+                                type="text"
+                                placeholder="Enter your Name"
+                            />
+
+                            <TextInput
+                                name="email"
+                                type="text"
+                                placeholder="Enter your Email"
+                            />
+
+                            <TextInput
+                                name="password"
+                                type="password"
+                                placeholder="Enter Password"
+                            />
+
+                            <TextInput
+                                name="confirm_password"
+                                type="password"
+                                placeholder="Re-enter Password"
+                            />
+
+                            <MySelect
+                                name="roll"
+                                type="select"
+                            >
+                                <option>--Roll--</option>
+                                <option>User</option>
+                                <option>Admin</option>
+                                <option>SuperAdmin</option>
+                            </MySelect>
+
+                            <div className="btn">
+                                <button type='submit'>Register</button>
+                            </div>
+                            <p>Already have an account ? <Link to={'login'}>Login</Link></p>
+                    </Form>
+            </Formik>  
+        </>
+    )
+}
+
+export default Register;
