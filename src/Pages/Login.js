@@ -53,7 +53,7 @@ function Login(){
             console.log(datas)
 
             if(!datas.error){
-                setuData(datas.user[0])
+                navigate('/dashboard')
             }
             else{
                 console.log(datas.error)

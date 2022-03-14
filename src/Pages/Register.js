@@ -87,7 +87,7 @@ function Register(){
                                 alert(data.error)
                             }
                             else{
-                                navigate('login')
+                                navigate('/login')
                             }
                         }, 400);
                     }}
@@ -125,10 +125,10 @@ function Register(){
                                 name="roll"
                                 type="select"
                             >
-                                <option>--Roll--</option>
-                                <option>User</option>
-                                <option>Admin</option>
-                                <option>SuperAdmin</option>
+                                <option>--Select--</option>
+                                <option value={'User'}>User</option>
+                                <option value={'Admin'}>Admin</option>
+                                <option value={'SuperAdmin'}>SuperAdmin</option>
                             </MySelect>
 
                             <div className="btn">
