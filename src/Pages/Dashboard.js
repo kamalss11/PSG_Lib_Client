@@ -137,12 +137,13 @@ function Dashboard(){
                                 <th>Title of the Paper</th>
                                 <th>Files</th>
                                 <th>Status</th>
+                                <th>Uploaded Date</th>
                             </tr>
                             </thead>
                             <tbody>
                             {
                                 udata.user.map((e,i)=>{
-                                    const {file,title} = e
+                                    const {file,title,date} = e
                                     setTimeout(async()=>{
                                         const res = await fetch('/check_status',{
                                             method: "POST",
@@ -174,6 +175,8 @@ function Dashboard(){
                                                         stsU ? stsU : null
                                                     }
                                                 </td>
+
+                                                <td>{date}</td>
                                             </tr>
                                         )
                                     }
@@ -294,9 +297,8 @@ function Dashboard(){
                             <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th>Name</th>
                                 <th>Title of the Paper</th>
-                                <th>Files</th>
+                                <th>Author</th>
                                 <th>Assign To</th>
                                 <th>Assigned To(click to remove)</th>
                                 <th>Status</th>
