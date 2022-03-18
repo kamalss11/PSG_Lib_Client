@@ -1,5 +1,6 @@
 import {React,useEffect,useState} from  'react'
 import {Link,useNavigate} from 'react-router-dom'
+import Dash from '../Components/Dash'
 
 function Profile(){
     const [udata,setuData] = useState()
@@ -20,7 +21,7 @@ function Profile(){
             console.log(datas)
 
             if(!datas.error){
-                setuData(datas.user[0])
+                setuData(datas)
             }
             else{
                 console.log(datas.error)
@@ -37,16 +38,23 @@ function Profile(){
     },[])
     return(
         <>
-            <div>
-                <Link to='/dashboard'>Dashboard</Link><br />
-                <Link to='/profile'>Profile</Link><br />
-                <Link to='/edit_profile'>Edit Profile</Link><br />
-                <Link to='/logout'>Logout</Link>
-                {udata ?    
-                    <div> 
-                        <p>Name : {udata.name}</p>
-                        <p>Email : {udata.email}</p>
-                    </div> : ''}
+            <div className='nav'>
+                <h4>Profile</h4>
+            </div>
+
+            <div className='d'>
+                {
+                    udata ? 
+                    <Dash prof='active' udata={udata} /> : 
+                    <Dash  />
+                }
+                <div className='cc'>
+                    {udata ?    
+                        <div className='prof'> 
+                            <p><b>Name :</b> {udata.user[0].name}</p>
+                            <p><b>Email :</b> {udata.user[0].email}</p>
+                        </div> : ''}
+                </div>
             </div>
         </>
     )

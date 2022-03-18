@@ -24,4 +24,507 @@
   --fntgry: #6a737c;
   --sidebar: #283d7f;
   --yellow: #ffad18;
+  --blue: #002e5b;
+}
+
+body{
+  background-color: var(--white);
+}
+
+.hhd{
+  padding: 10px;
+  background-color: var(--blue);
+  color: var(--yellow);
+  text-align: center;
+}
+
+nav{
+  padding: 10px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0,0,0,.1);
+}
+
+nav .logo img{
+  width: 300px;
+}
+
+nav ul{
+  display: flex;
+  align-items: center;
+}
+
+nav ul li{
+  margin: 0 10px;
+}
+
+nav ul li a{
+  color: var(--fntgry);
+  padding-bottom: 4px;
+  position: relative;
+}
+
+nav ul li a::before{
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--yellow);
+  transition: .4s;
+}
+
+nav ul li:hover a::before,nav ul li.active a::before{
+  width: 100%;
+}
+
+.cnt{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cnt .menus{
+    width: 200px;
+    background-color: var(--blue);
+    /* background-color: var(--yellow); */
+}
+
+.cnt .menus h4{
+    margin: 20px 10px;
+    text-align: center;
+    color: var(--yellow);
+}
+
+.cnt .menus ul{
+    margin-top: 25px;
+}
+
+.cnt .menus ul li{
+    margin: 10px 5px
+}
+
+.cnt .menus ul li a{
+    display: block;
+    font-size: 14px;
+    padding: 15px;
+    color: var(--white);
+    transition: .6s;
+}
+
+.cnt .menus ul li.active a{
+    background: var(--yellow);
+    color: var(--white);
+}
+
+.cnt .menus ul li:hover a{
+    background: var(--yellow);
+}
+
+.msg{
+    padding: 30px 20px;
+    background: var(--white);
+    box-shadow: 0 0 15px rgba(0,0,0,.1);
+    width: 85%;
+    margin: 0 10px;
+    position: relative;
+}
+
+.msg.mn::before{
+    content: "";
+    font-size: 1rem;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 17px solid var(--yellow);
+    /* left: 13px;
+    top: -9px; */
+    left: -6px;
+    top: 30px;
+}
+
+.msg .lhd{
+    margin: 0 10px 10px;
+    color: var(--gray-dark);
+}
+
+.msg .fl img{
+    box-shadow: 0 0 15px rgba(0,0,0,.3);
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 7px;
+}
+
+.msg .fl div{
+    padding: 0 20px 0 10px;
+}
+
+.msg .fl p.qs{
+    margin: 15px;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 7px;
+    cursor: pointer;
+    position: relative;
+}
+
+.msg .fl p.qs::before{
+    content: "";
+    font-size: 1rem;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid var(--yellow);
+    /* left: 13px;
+    top: -9px; */
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: .4s;
+}
+
+.msg .fl p.qs.active::before{
+    transform: translateY(-50%) rotate(90deg);    
+}
+
+.msg .fl p.ans{
+    height: 0;
+    padding: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    color: var(--white);
+    transition: .4s;
+}
+
+.msg .fl p.ans.active{
+    background-color: rgb(0, 46, 91);
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    height: auto;
+}
+
+.msg .fl form .fields{
+    margin: 20px 0;
+}
+
+.msg .fl form .fields label{
+    display: block;
+    font-size: 13px;
+    color: var(--gray-dark);
+}
+
+.msg .fl form .fields label span{
+    color: var(--danger);
+}
+
+.msg .fl form .fields input{
+    margin: 10px 0;
+    outline: none;
+    width: 100%;
+    padding: 10px 15px;
+    color: var(--gray-dark);
+}
+
+.msg .fl form .btn{
+    display: flex;
+    justify-content: center;
+}
+
+.msg .fl form .btn button{
+    padding: 10px 15px;
+    background-color: rgb(0, 46, 91);
+    color: var(--white);
+    border-radius: 7px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.msg .fl form .btn button:hover{
+    color: var(--yellow);
+}
+
+.msg a.cr{
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--dark);
+}
+
+.msg .fl b{
+    color: var(--gray);
+}
+
+.msg .fl b p{
+    margin: 0;
+}
+
+.msg .fl h3{
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.msg .fl p{
+    margin: 10px 10px 10px 20px;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: justify;
+}
+
+.msg .bce{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.msg .bce p.ce{
+    text-align: right;
+    font-size: 14px;
+    padding: 9px 14px;
+    background-color: rgb(0, 46, 91);
+    color: var(--yellow);
+}
+
+.register{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 120px);
+}
+
+.register form{
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+  padding: 20px 25px;
+  background-color: var(--blue);
+  width: 55%;
+}
+
+.register form h3{
+  color: var(--yellow);
+}
+
+.register form .fields,.cc form .fields{
+  margin: 25px 0;
+}
+
+.cc form .fields label{
+  color: var(--blue);
+  font-size: 13px;
+}
+
+.register form .fields p.error,.cc form .fields p.error{
+  color: var(--gray);
+  font-size: 12px;
+  text-align: left;
+}
+
+.cc form .fields p.error{
+  color: var(--red);
+  font-size: 12px;
+  text-align: left;
+}
+
+.register form .fields input,.register form .fields select,.cc form .fields input{
+  padding: 7px 10px;
+  border: none;
+  outline: none;
+  border: 1px solid var(--gray);
+  width: 100%;
+  border-radius: 4px;
+}
+
+.register form .btn,.cc form .btn{
+  text-align: center;
+}
+
+.register form .btn button,.cc form .btn button{
+  background-color: var(--yellow);
+  color: var(--blue);
+  padding: 8px 15px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.cc form .btn button{
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.register form p{
+  text-align: center;
+  color: var(--white);
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.register form p a{
+  color: var(--yellow);
+}
+
+.d{
+  display: flex;
+  align-items: center;
+}
+
+.dashboard{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 200px;
+  height: 100%;
+  background-color: var(--blue);
+}
+
+.dashboard .title{
+  text-align: center;
+  padding: 10px 3px;
+  font-size: 15px;
+  color: var(--white);
+  border-bottom: 1px solid var(--gray);
+}
+
+.dashboard .title span{
+  font-size: 18px;
+  color: var(--yellow);
+}
+
+.dashboard .menus li {
+  margin: 25px 10px;
+}
+
+.dashboard .menus li a{
+  color: var(--white);
+  transition: .4s;
+}
+
+.dashboard .menus li.active a,.dashboard .menus li:hover a{
+    color: var(--yellow);
+}
+
+.nav{
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 200px;
+  padding: 20px;
+  width: calc(100% - 200px);
+  background-color: var(--white);
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+  z-index: 20;
+}
+
+.nav h4{
+  color: var(--blue);
+}
+
+.cc{
+  margin-top: 65px;
+  margin-left: 200px;
+  padding: 20px;
+  flex-basis: 100%;
+}
+
+.cc form{
+  margin: 30px 0 50px;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 4px;
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0,0,0,.1);
+}
+
+.cc form.sub{
+  box-shadow: none;
+  margin: 0;
+}
+
+.cc form.sub .btn{
+  text-align: left;
+}
+
+.cc form h3{
+  color: var(--blue);
+}
+
+.cc table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cc table thead tr{
+  background-color: var(--blue);
+}
+
+.cc table thead tr th{
+  padding: 10px;
+  font-size: 15px;
+  font-weight: normal;
+  color: var(--yellow);
+}
+
+.cc table tbody{
+  font-size: 14px;
+}
+
+.cc table tbody tr{
+  padding: 10px;
+  transition: .4s;
+}
+
+.cc table tbody tr:hover{
+  background-color: #FFFFE1;
+}
+
+.cc table tbody tr td{
+  padding: 10px;
+  border: 1px solid #a7a7a7;
+}
+
+.cc table tbody tr td button{
+  padding: 8px;
+  border: none;
+  outline: none;
+  background-color: var(--blue);
+  color: var(--yellow);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.cc table tbody p{
+  color: var(--blue);
+  margin: 15px 0;
+}
+
+.cc .rev{
+  margin: 25px 0;
+}
+
+.cc .rev p{
+  line-height: 33px;
+}
+
+.cc .prof{
+  background-color: var(--white);
+  box-shadow: 0 0 15px rgba(0,0,0,.1);
+  padding: 20px;
+  border-radius: 3px;
+}
+
+.cc .prof p{
+  margin: 20px 0;
+  font-size: 15px;
+  color: var(--fntgry);
+}
+
+.cc .prof p b{
+  color: var(--blue);
 }

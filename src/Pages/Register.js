@@ -2,6 +2,7 @@ import {React,useEffect} from  'react'
 import {Link,useNavigate} from 'react-router-dom'
 import { Formik,Form,useField } from 'formik'
 import * as Yup from 'yup'
+import Homea from '../Components/Homea'
 
 const TextInput = ({ label,...props }) => {
     const [field,meta] = useField(props)
@@ -37,65 +38,65 @@ function Register(){
     const navigate = useNavigate()
     return(
         <>
-            <Formik
-                initialValues = {{
-                    name: '',
-                    email: '',
-                    password: '',
-                    confirm_password: '',
-                    roll: ''
-                }}
-                        
-                validationSchema = {
-                    Yup.object({
-                        name: Yup.string()
-                            .required('Required'),
-                        email: Yup.string()
-                            .email('Invalid Email')
-                            .required('Required'),
-                        password: Yup.string()
-                            .min(4,'Password must be greater than 4 characters')
-                            .required('Required'),
-                        confirm_password: Yup.string()
-                            .oneOf(
-                            [Yup.ref('password')],
-                            'Both password needs to be same'
-                            )
-                    })
-                }
-
-                    onSubmit={(values, { setSubmitting,resetForm }) => {
-                        setTimeout(async () => {
-                            console.log(values)
-                            const res = await fetch("/",{
-                                method: "POST",
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    name: values.name,
-                                    email : values.email,
-                                    password : values.password,
-                                    cpassword: values.confirm_password,
-                                    roll: values.roll
-                                })
-                            })
-
-                            const data = await res.json()
-                            console.log(data)
-                            if(res.status === 422 || !data){
-                                alert(data.error)
-                            }
-                            else{
-                                navigate('/login')
-                            }
-                        }, 400);
+            <Homea reg={'active'} />
+            <div className='register'>
+                <Formik
+                    initialValues = {{
+                        name: '',
+                        email: '',
+                        password: '',
+                        confirm_password: '',
+                        roll: ''
                     }}
-                >
-                    <Form method="POST" className="form">
-                            <div>
-                                <h3>Register</h3>
-                            </div>
+                            
+                    validationSchema = {
+                        Yup.object({
+                            name: Yup.string()
+                                .required('Required'),
+                            email: Yup.string()
+                                .email('Invalid Email')
+                                .required('Required'),
+                            password: Yup.string()
+                                .min(4,'Password must be greater than 4 characters')
+                                .required('Required'),
+                            confirm_password: Yup.string()
+                                .oneOf(
+                                [Yup.ref('password')],
+                                'Both password needs to be same'
+                                )
+                        })
+                    }
+
+                        onSubmit={(values, { setSubmitting,resetForm }) => {
+                            setTimeout(async () => {
+                                console.log(values)
+                                const res = await fetch("/",{
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        name: values.name,
+                                        email : values.email,
+                                        password : values.password,
+                                        cpassword: values.confirm_password,
+                                        roll: values.roll
+                                    })
+                                })
+
+                                const data = await res.json()
+                                console.log(data)
+                                if(res.status === 422 || !data){
+                                    alert(data.error)
+                                }
+                                else{
+                                    navigate('/login')
+                                }
+                            }, 400);
+                        }}
+                    >
+                        <Form method="POST" className="form">
+                            <h3>Register</h3>
 
                             <TextInput
                                 name="name"
@@ -134,9 +135,10 @@ function Register(){
                             <div className="btn">
                                 <button type='submit'>Register</button>
                             </div>
-                            <p>Already have an account ? <Link to={'login'}>Login</Link></p>
-                    </Form>
-            </Formik>  
+                            <p>Already have an account ? <Link to={'/login'}>Login</Link></p>
+                        </Form>
+                </Formik>  
+            </div>
         </>
     )
 }

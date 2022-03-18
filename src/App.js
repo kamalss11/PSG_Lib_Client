@@ -9,19 +9,32 @@ import Profile from './Pages/Profile';
 import Edit_Profile from './Pages/Edit_profile';
 import Forget_Password from './Pages/Forget_password';
 import Reset_Password from './Pages/Reset_password';
+import Assign from './Pages/Assign';
+import Archives from './Pages/Archives';
+import Home from './Pages/Home';
+import Call from './Pages/Call';
+import Author from './Pages/Author';
+import Cissue from './Pages/Cissue';
 
 function App() {
   const Routing = ()=>{
     return(
       <Router>
         <Routes>
-          <Route exact path='/' element={<Register />} />
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/register' element={<Register />} />
           <Route exact path='login' element={<Login />} />
           <Route exact path='dashboard' element={<Dashboard />} />
           <Route exact path='profile' element={<Profile />} />
           <Route exact path='edit_profile' element={<Edit_Profile />} />
           <Route exact path='forget_password' element={<Forget_Password />} />
           <Route exact path='reset_password/:token' element={<Reset_Password />} />
+          <Route exact path='reset_password/:token' element={<Reset_Password />} />
+          <Route exact path='dashboard/view' element={<Assign />} />        
+          <Route exact path='archives' element={<Archives />} />          
+          <Route exact path='call_for_paper' element={<Call />} />         
+          <Route exact path='author_instructions' element={<Author />} />  
+          <Route exact path='current_issues' element={<Cissue />} />   
           <Route exact path='logout' element={<Logout />} />
         </Routes>
       </Router>

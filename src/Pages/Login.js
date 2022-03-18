@@ -2,6 +2,7 @@ import {React,useEffect,useState} from  'react'
 import {Link,useNavigate} from 'react-router-dom'
 import { Formik,Form,useField } from 'formik'
 import * as Yup from 'yup'
+import Homea from '../Components/Homea'
 
 const TextInput = ({ label,...props }) => {
     const [field,meta] = useField(props)
@@ -69,72 +70,76 @@ function Login(){
     },[])
     return(
         <>
-            <Formik
-                initialValues = {{
-                    email: '',
-                    password: ''
-                }}
-                        
-                validationSchema = {
-                    Yup.object({
-                        email: Yup.string()
-                            .email('Invalid Email')
-                            .required('Required'),
-                        password: Yup.string()
-                            .min(4,'Password must be greater than 4 characters')
-                            .required('Required')
-                    })
-                }
+            <Homea log={'active'}/>
+            <div className='register'>
 
-                    onSubmit={(values, { setSubmitting,resetForm }) => {
-                        setTimeout(async () => {
-                            console.log(values)
-                            const res = await fetch("/login",{
-                                method: "POST",
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    email : values.email,
-                                    password : values.password
-                                })
-                            })
-
-                            const data = await res.json()
-                            console.log(data)
-                            if(res.status === 400 || !data){
-                                alert(data.error)
-                            }
-                            else{
-                                resetForm(true)
-                                navigate('/dashboard')
-                            }
-                        }, 400);
+                <Formik
+                    initialValues = {{
+                        email: '',
+                        password: ''
                     }}
-                >
-                    <Form method="POST" className="form">
-                            <div>
-                                <h3>Login</h3>
-                            </div>
+                            
+                    validationSchema = {
+                        Yup.object({
+                            email: Yup.string()
+                                .email('Invalid Email')
+                                .required('Required'),
+                            password: Yup.string()
+                                .min(4,'Password must be greater than 4 characters')
+                                .required('Required')
+                        })
+                    }
 
-                            <TextInput
-                                name="email"
-                                type="text"
-                                placeholder="Enter your Email"
-                            />
+                        onSubmit={(values, { setSubmitting,resetForm }) => {
+                            setTimeout(async () => {
+                                console.log(values)
+                                const res = await fetch("/login",{
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        email : values.email,
+                                        password : values.password
+                                    })
+                                })
 
-                            <TextInput
-                                name="password"
-                                type="password"
-                                placeholder="Enter Password"
-                            />
+                                const data = await res.json()
+                                console.log(data)
+                                if(res.status === 400 || !data){
+                                    alert(data.error)
+                                }
+                                else{
+                                    resetForm(true)
+                                    navigate('/dashboard')
+                                }
+                            }, 400);
+                        }}
+                    >
+                        <Form method="POST" className="form">
+                                <div>
+                                    <h3>Login</h3>
+                                </div>
 
-                            <div className="btn">
-                                <button type='submit'>Login</button>
-                            </div>
-                            <p><Link to='/forget_password'>Forget Password ?</Link></p>
-                    </Form>
-            </Formik>  
+                                <TextInput
+                                    name="email"
+                                    type="text"
+                                    placeholder="Enter your Email"
+                                />
+
+                                <TextInput
+                                    name="password"
+                                    type="password"
+                                    placeholder="Enter Password"
+                                />
+
+                                <div className="btn">
+                                    <button type='submit'>Login</button>
+                                </div>
+                                <p><Link to='/forget_password'>Forget Password ?</Link></p>
+                        </Form>
+                </Formik>  
+            </div >
         </>
     )
 }
