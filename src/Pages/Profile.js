@@ -1,6 +1,7 @@
 import {React,useEffect,useState} from  'react'
 import {Link,useNavigate} from 'react-router-dom'
 import Dash from '../Components/Dash'
+import Homea from '../Components/Homea'
 
 function Profile(){
     const [udata,setuData] = useState()
@@ -38,14 +39,13 @@ function Profile(){
     },[])
     return(
         <>
-            <div className='nav'>
-                <h4>Profile</h4>
-            </div>
+            <Homea />
 
             <div className='d'>
+
                 {
                     udata ? 
-                    <Dash prof='active' udata={udata} /> : 
+                    <Dash page_name = "Profile" prof='active' udata={udata} /> : 
                     <Dash  />
                 }
                 <div className='cc'>

@@ -2,6 +2,7 @@ import {React,useEffect,useState} from  'react'
 import {Link,useNavigate} from 'react-router-dom'
 import { Formik,Form,useField } from 'formik'
 import * as Yup from 'yup'
+import Homea from '../Components/Homea'
 
 const TextInput = ({ label,...props }) => {
     const [field,meta] = useField(props)
@@ -75,7 +76,9 @@ function Reset_Password(){
     // },[])
     return(
         <>
-            <div>
+            <Homea />
+            
+            <div className='register'> 
                 <Formik
                     initialValues = {{
                         password: '',

@@ -1,25 +1,17 @@
 import {React,useEffect,useState} from  'react'
 import {Link,useNavigate,useLocation} from 'react-router-dom'
 import Homea from '../Components/Homea'
+import Menus from '../Components/Menus'
 
 function Author(){
     const location = useLocation()
     const navigate = useNavigate()
     return(
         <div className='home'>
-            <Homea />
+            <Homea author="active"/>
 
             <div className="cnt">
-                <div className="menus">
-                    <h4>Menu</h4>
-                    <ul className="side-menu">                        
-                        <li><Link to={'/'}>Journal</Link></li>
-                        <li><Link to={'/call_for_paper'}>Call for Paper</Link></li>
-                        <li className='active'><Link to={'/author_instructions'}>Author Instructions</Link></li>
-                        <li><Link to={'/current_issues'}>Current Issues</Link></li>
-                        <li><Link to={'/archives'}>Archives</Link></li>
-                    </ul> 
-                </div>
+                <Menus author="active" />
 
                 <div className="msg mn">
                     <h3 className="lhd">Author Instructions</h3>

@@ -1,11 +1,13 @@
 import {React,useEffect,useState} from  'react'
 import {Link,useNavigate,useLocation} from 'react-router-dom'
 import Homea from '../Components/Homea'
+import Menus from '../Components/Menus'
 
 function Archives(){
     const location = useLocation()
     const navigate = useNavigate()
     const [volume,setVolume] = useState()
+    const [fileC,setFilC] = useState()
 
     const Credentials = async ()=>{
         try{
@@ -21,6 +23,7 @@ function Archives(){
             const datas = await res.json()
             console.log(datas)
             setVolume(datas.volumes)
+            setFilC(datas.file_count)
         }
         catch(err){
             console.log(err)
@@ -32,19 +35,10 @@ function Archives(){
     },[])
     return(
         <div className='home'>
-            <Homea />
+            <Homea archives="active"/>
 
             <div className="cnt">
-                <div className="menus">
-                    <h4>Menu</h4>
-                    <ul className="side-menu">                        
-                        <li><Link to={'/'}>Journal</Link></li>
-                        <li><Link to={'/call_for_paper'}>Call for Paper</Link></li>
-                        <li><Link to={'/author_instructions'}>Author Instructions</Link></li>
-                        <li><Link to={'/current_issues'}>Current Issues</Link></li>
-                        <li className='active'><Link to={'/archives'}>Archives</Link></li>
-                    </ul> 
-                </div>
+                <Menus archives="active" />
 
                 <div className="msg mn">
                     <h3 className="lhd">Archives</h3>
@@ -53,21 +47,31 @@ function Archives(){
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Volume 1</th>
+                                    {
+                                        volume ? volume.map((r,i)=>{
+                                            if(i+1 === fileC / 5){
+                                                return(
+                                                    <th key={i}>Volume {i+1}</th>
+                                                )
+                                            }
+                                        })  : null
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     volume ? <>
                                         {volume.map((e,i)=>{
-                                            return(
-                                                <tr key={i}>
-                                                    {
-                                                        e.volume_no === 1 ?<td>
-                                                        <a href={`Uploads/${e.file}`}>{e.file}_No.{i+1}</a></td> : null
-                                                    }
-                                                </tr>
-                                            )
+                                            if(e.volume_no === fileC){
+                                                return(
+                                                    <tr key={i}>
+                                                        <td>
+                                                        {
+                                                            <a href={`Uploads/${e.file}`}>{e.file}(No - {e.no})</a>
+                                                        }</td>
+                                                    </tr>
+                                                )
+                                            }
                                         })}
                                     </> : null
                                 }

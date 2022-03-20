@@ -39,6 +39,7 @@ function Register(){
     return(
         <>
             <Homea reg={'active'} />
+
             <div className='register'>
                 <Formik
                     initialValues = {{
@@ -63,7 +64,8 @@ function Register(){
                                 .oneOf(
                                 [Yup.ref('password')],
                                 'Both password needs to be same'
-                                )
+                                ),
+                            roll : Yup.string().required('Required')
                         })
                     }
 
