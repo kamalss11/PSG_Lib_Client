@@ -15,6 +15,7 @@ import Home from './Pages/Home';
 import Call from './Pages/Call';
 import Author from './Pages/Author';
 import Cissue from './Pages/Cissue';
+import Volume from './Pages/Volume';
 
 function App() {
   const Routing = ()=>{
@@ -34,7 +35,8 @@ function App() {
           <Route exact path='archives' element={<Archives />} />          
           <Route exact path='call_for_paper' element={<Call />} />         
           <Route exact path='author_instructions' element={<Author />} />  
-          <Route exact path='current_issues' element={<Cissue />} />   
+          <Route exact path='current_issues' element={<Cissue />} />    
+          <Route exact path='archives/volume' element={<Volume />} />  
           <Route exact path='logout' element={<Logout />} />
         </Routes>
       </Router>

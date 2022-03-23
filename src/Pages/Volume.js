@@ -3,16 +3,15 @@ import {Link,useNavigate,useLocation} from 'react-router-dom'
 import Homea from '../Components/Homea'
 import Menus from '../Components/Menus'
 
-function Archives(){
+function Volume(){
     const location = useLocation()
     const navigate = useNavigate()
     const [volume,setVolume] = useState()
-    const [fileC,setFilC] = useState()
-    const [volC,setvolCount] = useState()
+    console.log(location.state.id)
 
     const Credentials = async ()=>{
         try{
-            const res = await fetch('/archives',{
+            const res = await fetch(`/volume/${location.state.id}`,{
                 method: "GET",
                 headers: {
                     Accept: 'application/json',
@@ -22,11 +21,9 @@ function Archives(){
             })
     
             const datas = await res.json()
-            if(datas.volumes){
+            if(datas){
                 console.log(datas)
                 setVolume(datas.volumes)
-                setFilC(datas.file_count)
-                setvolCount(datas.volumeCount)
             }
         }
         catch(err){
@@ -45,17 +42,15 @@ function Archives(){
                 <Menus archives="active" />
 
                 <div className="msg mn">
-                    <h3 className="lhd">Archives</h3>
+                    <h3 className="lhd">Volume {volume ? volume[0].volume_no : ''}</h3>
 
                     {
                         volume ? <div className='volumes'>
                             {
                                 volume.map((e,i)=>{
-                                    console.log(e.volume_no)
-                                    if(i+1 % 5 === 5){
                                     return(
-                                        <button onClick={ee=>{navigate('/archives/volume',{state:{id:e.volume_no}});console.log(e.volume_no)}} key={i}>Volume {e.volume_no}</button>
-                                    )}
+                                        <a target={'_blank'} href={`/Uploads/${e.file}`} key={i}>Volume {e.volume_no} - No.{e.no}</a>
+                                    )
                                 })
                             }
                         </div> : <p>No Volumes</p>
@@ -66,4 +61,4 @@ function Archives(){
     )
 }
 
-export default Archives
+export default Volume
