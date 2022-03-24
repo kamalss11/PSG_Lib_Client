@@ -184,7 +184,7 @@ function Dashboard(){
                                                                             )
                                                                         }
 
-                                                                    }) : null
+                                                                    }) : <p>OnProcessing</p>
                                                                 }
                                                             </td>
                                                         </tr>
@@ -239,7 +239,7 @@ function Dashboard(){
                                         }
                                         </tbody>
                                     </table>
-                                : <p>No Paper Assigned</p>}
+                                : <p className='nop'>No Paper Assigned</p>}
                         </> : null
                     }
 
@@ -282,7 +282,7 @@ function Dashboard(){
                                         }
                                     </tbody>
                                 </table>
-                                : <p>No Admins / File is not Uploaded</p>
+                                : <p className='nop'>No Admins / File is not Uploaded</p>
                             }
                         </> : null
                     }

@@ -665,3 +665,29 @@ nav ul li:hover a::before,nav ul li.active a::before{
   color: var(--blue);
   font-weight: bold;
 }
+
+.volumes button{
+  padding: 10px 15px;
+  background-color: var(--blue);
+  color: var(--white);
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: .4s;
+}
+
+.volumes button:hover{
+  color: var(--yellow);
+}
+
+.volumes p a{
+  color: var(--blue);
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.nop{
+  margin-top: 80px;
+  color: var(--blue);
+}
