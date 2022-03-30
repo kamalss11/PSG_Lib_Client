@@ -350,6 +350,7 @@ function Assign(){
                                             body: JSON.stringify({
                                                 comment : values.comment,
                                                 status : values.a_r,
+                                                file : file.file,
                                                 file_id : review.id,
                                                 rev1_email : rev1_email,
                                                 rev2_email : rev2_email

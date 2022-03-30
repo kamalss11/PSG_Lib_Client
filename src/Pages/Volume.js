@@ -50,7 +50,7 @@ function Volume(){
                                 volume.map((e,i)=>{
                                     return(
                                         <>
-                                            <p><a target={'_blank'} href={`/Uploads/${e.file}`} key={i}>Volume {e.volume_no} - No.{e.no}</a></p>
+                                            <p><a target={'_blank'} href={`/Uploads/${e.file}`} key={i}>Volume {e.volume_no} - No.{e.no} - {e.file_no}</a></p>
                                         </>
                                     )
                                 })

@@ -16,7 +16,10 @@ function Author(){
                 <div className="msg mn">
                     <h3 className="lhd">Author Instructions</h3>
                     <div className="fl">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrumomnisminusunde commodi ipsum est a, dolores sapiente? Labore hic culpadelectusblanditiisdistinctio ratione illum quaerat nisi, corporis libero.Loremipsum dolor sitamet consectetur adipisicing elit. Deserunt autem ad a,absaepe debitisblanditiis nemo id sed cupiditate quae sequi temporacumqueofficiis, sunt harumporro itaque. Culpa.Lorem ipsum dolor, sitametconsectetur adipisicing elit.Nostrum omnis minus unde commodi ipsum esta,dolores sapiente? Labore hic culpadelectus blanditiis distinctiorationeillum quaerat nisi, corporis libero. Loremipsum dolor sit ametconsecteturadipisicing elit. Deserunt autem ad a, ab saepedebitis blanditiisnemo idsed cupiditate quae sequi tempora cumque officiis,sunt harum porroitaque.Culpa.</p>
+                        <p>The name(s) of the author(s)</p>
+                        <p>The affiliation(s) of the author(s), i.e. institution, (department), city, (state), country</p>
+                        <p>A clear indication and an active e-mail address of the corresponding author</p>
+                        <p>If available, the 16-digit ORCID of the author(s)</p>
                     </div>
                 </div>
             </div>
