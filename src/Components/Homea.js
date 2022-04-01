@@ -3,19 +3,50 @@ import {Link,useNavigate,useLocation} from 'react-router-dom'
 
 function Homea(props){
     console.log(props)
+    const [udata,setuData] = useState()
     const location = useLocation()
     const navigate = useNavigate()
+    const Credentials = async ()=>{
+        try{
+            const res = await fetch('/dashboard',{
+                method: "GET",
+                headers: {
+                    Accept: 'application/json',
+                    "Content-Type": "application/json"
+                },
+                credentials: 'include'
+            })
+    
+            const datas = await res.json()
+            console.log(datas)
+
+            if(!datas.error){
+                setuData(datas)
+            }
+            else{
+                console.log(datas.error)
+            }
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
+    useEffect(()=>{
+        Credentials()
+    },[])
     return(
         <>
             <div className='hhd'>
                 <div className='navs'>
                     <h3>PSG CAS Library</h3>
                     
-                    <img src={'/Images/75years.jpg'} />
+                    <img src={'/Images/75years.png'} />
 
                     <ul>
-                        <li><Link to={'/register'}>Register</Link></li>
-                        <li><Link to={'/login'}>Login</Link></li>
+                        <li className={udata ? 'dactive' : ''}><Link to={'/dashboard'}>Dashboard</Link></li>
+                        <li className={udata ? 'active' : ''}><Link to={'/register'}>Register</Link></li>
+                        <li><Link to={'/login'}>{udata ? 'Logout' : 'Login'}</Link></li>
                     </ul>
                 </div>
             </div>

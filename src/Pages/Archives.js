@@ -52,10 +52,9 @@ function Archives(){
                             {
                                 volume.map((e,i)=>{
                                     console.log(e.volume_no)
-                                    if(i+1 % 5 === 5){
                                     return(
                                         <button onClick={ee=>{navigate('/archives/volume',{state:{id:e.volume_no}});console.log(e.volume_no)}} key={i}>Volume {e.volume_no}</button>
-                                    )}
+                                    )
                                 })
                             }
                         </div> : <p>No Volumes</p>

@@ -184,6 +184,12 @@ function Dashboard(){
                                                                             )
                                                                         }
 
+                                                                        // if(e.file != ee.file){
+                                                                        //     return(
+                                                                        //         <span key={ii}>OnProcessing</span>
+                                                                        //     )
+                                                                        // }
+
                                                                     }) : <p>OnProcessing</p>
                                                                 }
                                                             </td>

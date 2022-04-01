@@ -52,8 +52,8 @@ body{
 }
 
 .hhd .navs img{
-  width: 100px;
-  height: 50px;
+  width: 75px;
+  height: 60px;
 }
 
 .hhd .navs ul{
@@ -65,17 +65,21 @@ body{
   margin: 0 2px;
 }
 
+.hhd .navs ul li.active{
+  display: none;
+}
+
 .hhd .navs ul li a{
   padding: 7px 13px;
   color: var(--white);
   font-size: 13px;
 }
 
-.hhd .navs ul li:nth-child(1) a{
+.hhd .navs ul li:nth-child(3) a{
   background-color: var(--yellow);
 }
 
-.hhd .navs ul li:nth-child(2) a{
+.hhd .navs ul li:nth-child(3) a{
   border: 1px solid var(--yellow);
 }
 

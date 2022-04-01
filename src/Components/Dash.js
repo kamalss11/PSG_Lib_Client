@@ -14,10 +14,10 @@ function Dash(props){
             <div className='dashboard'>
                 <p className='title'>Welcome,<br/><span><b>{props.udata ? props.udata.user[0].name : null}</b></span></p>
                 <ul className='menus'>   
-                    <li className={props.dash ? 'active' : ''}><Link to='/dashboard'><span class="material-icons">dashboard_customize</span> Dashboard</Link></li>
-                    <li className={props.prof ? 'active' : ''}><Link to='/profile'><span class="material-icons">account_box</span>Profile</Link></li>
+                    <li className={props.dash ? 'active' : ''}><Link to='/dashboard'><span className="material-icons">dashboard_customize</span> Dashboard</Link></li>                
+                    <li className={props.prof ? 'active' : ''}><Link to='/profile'><span className="material-icons">account_box</span>Profile</Link></li>
                     {props.prof || props.e_prof ? 
-                    <li className={props.e_prof ? 'active' : ''}><Link to='/edit_profile'><span class="material-icons">edit_note</span>Edit Profile</Link></li> : null}
+                    <li className={props.e_prof ? 'active' : ''}><Link to='/edit_profile'><span className="material-icons">edit_note</span>Edit Profile</Link></li> : null}
                     <li><Link to='/logout'><span class="material-icons">logout</span>Logout</Link></li>
                 </ul>
             </div>

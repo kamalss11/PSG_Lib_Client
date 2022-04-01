@@ -359,7 +359,7 @@ function Assign(){
                                 
                                         const data = await res.json()
                                         console.log(data)
-                                        window.location.reload(true)
+                                        // window.location.reload(true)
                                         if(res.status === 422 || !data){
                                             alert(data.error)
                                         }
