@@ -73,14 +73,19 @@ body{
   padding: 7px 13px;
   color: var(--white);
   font-size: 13px;
+  transition: .4s;
 }
-
-.hhd .navs ul li:nth-child(3) a{
+/* 
+.hhd .navs ul li:nth-child(2) a{
   background-color: var(--yellow);
+} */
+
+.hhd .navs ul li:nth-child(2) a{
+  border: 1px solid var(--yellow);
 }
 
-.hhd .navs ul li:nth-child(3) a{
-  border: 1px solid var(--yellow);
+.hhd .navs ul li:nth-child(2):hover a{
+  background-color: var(--yellow);
 }
 
 nav{
@@ -139,7 +144,7 @@ nav ul li:hover a::before,nav ul li.active a::before{
 
 .cnt .menus{
   position: fixed;
-  top: 183px;
+  top: 153px;
   z-index: 20;
   left: 0;
     width: 200px;
@@ -495,7 +500,7 @@ nav ul li:hover a::before,nav ul li.active a::before{
   margin-left: 210px;
   padding: 20px;
   background-color: var(--blue);
-  box-shadow: 0 0 10px rgba(0,0,0,.1);
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
   z-index: 20;
 }
 

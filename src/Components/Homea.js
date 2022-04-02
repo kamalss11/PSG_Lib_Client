@@ -44,9 +44,8 @@ function Homea(props){
                     <img src={'/Images/75years.png'} />
 
                     <ul>
-                        <li className={udata ? 'dactive' : ''}><Link to={'/dashboard'}>Dashboard</Link></li>
-                        <li className={udata ? 'active' : ''}><Link to={'/register'}>Register</Link></li>
-                        <li><Link to={'/login'}>{udata ? 'Logout' : 'Login'}</Link></li>
+                        {udata ? <li><Link to={'/dashboard'}>Dashboard</Link></li> : <li><Link to={'/register'}>Register</Link></li>}
+                        {udata ? <li><Link to={'/logout'}>Logout</Link></li> : <li><Link to={'/login'}>Login</Link></li>}
                     </ul>
                 </div>
             </div>

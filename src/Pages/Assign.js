@@ -338,34 +338,26 @@ function Assign(){
                             onSubmit={(values, { setSubmitting}) => {
                                 setTimeout(async () => {
                                     console.log(values)
-                                    if(values.a_r === ''){
-                                        console.log('Nodfile')
-                                    }
-                                    else{
-                                        const res = await fetch("/reviewers",{
-                                            method: "PUT",
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            },
-                                            body: JSON.stringify({
-                                                comment : values.comment,
-                                                status : values.a_r,
-                                                file : file.file,
-                                                file_id : review.id,
-                                                rev1_email : rev1_email,
-                                                rev2_email : rev2_email
-                                            })
+                                    const res = await fetch("/reviewers",{
+                                        method: "PUT",
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            comment : values.comment,
+                                            status : values.a_r,
+                                            file : file.file,
+                                            file_id : review.id,
+                                            rev1_email : rev1_email,
+                                            rev2_email : rev2_email
                                         })
+                                    })
                                 
-                                        const data = await res.json()
-                                        console.log(data)
-                                        // window.location.reload(true)
-                                        if(res.status === 422 || !data){
-                                            alert(data.error)
-                                        }
-                                        else{
-                                            window.location.reload(true)
-                                        }}
+                                    const data = await res.json()
+                                    console.log(data)
+                                    setTimeout(()=>{
+                                        window.location.reload(true)
+                                    },900)
                                 }, 200);
                             }}
                         >

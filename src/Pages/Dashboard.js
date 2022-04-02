@@ -162,7 +162,7 @@ function Dashboard(){
                                         <tbody>
                                         {
                                             udata.user.map((e,i)=>{
-                                                const {file,title,id} = e
+                                                const {file,title,status,id} = e
                                                 
                                                 if(file){
                                                     return(
@@ -176,22 +176,7 @@ function Dashboard(){
                                                             </td>
                                                             
                                                             <td>
-                                                                {
-                                                                    udata && udata.review  ? udata.review.map((ee,ii)=>{
-                                                                        if(e.file === ee.file){
-                                                                            return(
-                                                                                <span key={ii}>{ee.r1_status}</span>
-                                                                            )
-                                                                        }
-
-                                                                        // if(e.file != ee.file){
-                                                                        //     return(
-                                                                        //         <span key={ii}>OnProcessing</span>
-                                                                        //     )
-                                                                        // }
-
-                                                                    }) : <p>OnProcessing</p>
-                                                                }
+                                                                {status}
                                                             </td>
                                                         </tr>
                                                     )
