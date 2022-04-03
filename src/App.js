@@ -16,6 +16,7 @@ import Call from './Pages/Call';
 import Author from './Pages/Author';
 import Cissue from './Pages/Cissue';
 import Volume from './Pages/Volume';
+import S_a from './Pages/S_a';
 
 function App() {
   const Routing = ()=>{
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/register' element={<Register />} />
+          <Route exact path='/register/offc' element={<S_a />} />
           <Route exact path='login' element={<Login />} />
           <Route exact path='dashboard' element={<Dashboard />} />
           <Route exact path='profile' element={<Profile />} />

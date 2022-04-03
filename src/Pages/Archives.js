@@ -23,7 +23,6 @@ function Archives(){
     
             const datas = await res.json()
             if(datas.volumes){
-                console.log(datas)
                 setVolume(datas.volumes)
                 setFilC(datas.file_count)
                 setvolCount(datas.volumeCount)
@@ -51,9 +50,8 @@ function Archives(){
                         volume ? <div className='volumes'>
                             {
                                 volume.map((e,i)=>{
-                                    console.log(e.volume_no)
                                     return(
-                                        <button onClick={ee=>{navigate('/archives/volume',{state:{id:e.volume_no}});console.log(e.volume_no)}} key={i}>Volume {e.volume_no}</button>
+                                        <button onClick={ee=>{navigate('/archives/volume',{state:{id:e.volume_no}})}} key={i}>Volume {e.volume_no}</button>
                                     )
                                 })
                             }

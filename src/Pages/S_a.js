@@ -34,7 +34,7 @@ const MySelect = ({ label, ...props }) => {
     )
 }
 
-function Register(){
+function S_a(){
     const navigate = useNavigate()
     return(
         <>
@@ -82,7 +82,7 @@ function Register(){
                                         email : values.email,
                                         password : values.password,
                                         cpassword: values.confirm_password,
-                                        roll: 'User'
+                                        roll: values.roll
                                     })
                                 })
 
@@ -98,7 +98,7 @@ function Register(){
                         }}
                     >
                         <Form method="POST" className="form">
-                            <h3>Register</h3>
+                            <h3>Register (For Officials)</h3>
 
                             <TextInput
                                 name="name"
@@ -124,15 +124,14 @@ function Register(){
                                 placeholder="Re-enter Password"
                             />
 
-                            {/* <MySelect
+                            <MySelect
                                 name="roll"
                                 type="select"
                             >
                                 <option>--Select--</option>
-                                <option value={'User'}>User</option>
                                 <option value={'Admin'}>Admin</option>
                                 <option value={'SuperAdmin'}>SuperAdmin</option>
-                            </MySelect> */}
+                            </MySelect>
 
                             <div className="btn">
                                 <button type='submit'>Register</button>
@@ -145,4 +144,4 @@ function Register(){
     )
 }
 
-export default Register;
+export default S_a;

@@ -7,7 +7,6 @@ function Volume(){
     const location = useLocation()
     const navigate = useNavigate()
     const [volume,setVolume] = useState()
-    console.log(location.state.id)
 
     const Credentials = async ()=>{
         try{
@@ -22,7 +21,6 @@ function Volume(){
     
             const datas = await res.json()
             if(datas){
-                console.log(datas)
                 setVolume(datas.volumes)
             }
         }
@@ -49,9 +47,7 @@ function Volume(){
                             {
                                 volume.map((e,i)=>{
                                     return(
-                                        <>
-                                            <p><a target={'_blank'} href={`/Uploads/${e.file}`} key={i}>Volume {e.volume_no} - No.{e.no} - {e.file_no}</a></p>
-                                        </>
+                                        <p key={i}><a target={'_blank'} href={`/Uploads/${e.file}`} key={i}>Volume {e.volume_no} - No.{e.no} - {e.file_no}</a></p>
                                     )
                                 })
                             }

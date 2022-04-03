@@ -52,13 +52,11 @@ function Edit_Profile(){
             })
     
             const datas = await res.json()
-            console.log(datas)
 
             if(!datas.error){
                 setuData(datas)
             }
             else{
-                console.log(datas.error)
                 navigate('/login')
             }
         }
