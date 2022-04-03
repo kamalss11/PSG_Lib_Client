@@ -71,7 +71,6 @@ function S_a(){
 
                         onSubmit={(values, { setSubmitting,resetForm }) => {
                             setTimeout(async () => {
-                                console.log(values)
                                 const res = await fetch("/",{
                                     method: "POST",
                                     headers: {
@@ -87,7 +86,6 @@ function S_a(){
                                 })
 
                                 const data = await res.json()
-                                console.log(data)
                                 if(res.status === 422 || !data){
                                     alert(data.error)
                                 }
