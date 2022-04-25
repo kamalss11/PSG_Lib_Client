@@ -64,8 +64,7 @@ function Register(){
                                 .oneOf(
                                 [Yup.ref('password')],
                                 'Both password needs to be same'
-                                ),
-                            roll : Yup.string().required('Required')
+                                )
                         })
                     }
 
