@@ -55,11 +55,13 @@ function Dashboard(){
             })
     
             const datas = await res.json()
+            console.log(datas)
 
             if(!datas.error){
                 setuData(datas)
             }
             else{
+                console.log(datas.error)
                 navigate('/login')
             }
         }
@@ -160,7 +162,7 @@ function Dashboard(){
                                         <tbody>
                                         {
                                             udata.user.map((e,i)=>{
-                                                const {file,title,status,id} = e
+                                                const {file,title,id} = e
                                                 
                                                 if(file){
                                                     return(
@@ -174,7 +176,22 @@ function Dashboard(){
                                                             </td>
                                                             
                                                             <td>
-                                                                {status}
+                                                                {
+                                                                    udata && udata.review  ? udata.review.map((ee,ii)=>{
+                                                                        if(e.file === ee.file){
+                                                                            return(
+                                                                                <span key={ii}>{ee.r1_status}</span>
+                                                                            )
+                                                                        }
+
+                                                                        // if(e.file != ee.file){
+                                                                        //     return(
+                                                                        //         <span key={ii}>OnProcessing</span>
+                                                                        //     )
+                                                                        // }
+
+                                                                    }) : <p>OnProcessing</p>
+                                                                }
                                                             </td>
                                                         </tr>
                                                     )

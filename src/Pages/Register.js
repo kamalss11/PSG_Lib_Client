@@ -64,12 +64,14 @@ function Register(){
                                 .oneOf(
                                 [Yup.ref('password')],
                                 'Both password needs to be same'
-                                )
+                                ),
+                            roll : Yup.string().required('Required')
                         })
                     }
 
                         onSubmit={(values, { setSubmitting,resetForm }) => {
                             setTimeout(async () => {
+                                console.log(values)
                                 const res = await fetch("/",{
                                     method: "POST",
                                     headers: {
@@ -80,11 +82,12 @@ function Register(){
                                         email : values.email,
                                         password : values.password,
                                         cpassword: values.confirm_password,
-                                        roll: 'User'
+                                        roll: values.roll
                                     })
                                 })
 
                                 const data = await res.json()
+                                console.log(data)
                                 if(res.status === 422 || !data){
                                     alert(data.error)
                                 }
@@ -121,7 +124,7 @@ function Register(){
                                 placeholder="Re-enter Password"
                             />
 
-                            {/* <MySelect
+                            <MySelect
                                 name="roll"
                                 type="select"
                             >
@@ -129,7 +132,7 @@ function Register(){
                                 <option value={'User'}>User</option>
                                 <option value={'Admin'}>Admin</option>
                                 <option value={'SuperAdmin'}>SuperAdmin</option>
-                            </MySelect> */}
+                            </MySelect>
 
                             <div className="btn">
                                 <button type='submit'>Register</button>

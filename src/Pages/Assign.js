@@ -5,8 +5,6 @@ import * as Yup from 'yup'
 import Axios from 'axios'
 import Dash from '../Components/Dash'
 import Homea from '../Components/Homea'
-import SelectSearch,{fuzzySearch} from 'react-select-search';
-import { useRef } from "react";
 
 const TextInput = ({ label,...props }) => {
     const [field,meta] = useField(props)
@@ -64,64 +62,11 @@ function Assign(){
     const [udata,setuData] = useState()
     const [file,setFile] = useState()
     const [admins,setAdmins] = useState()
-    const [f1_admin,setf1A] = useState()
-    const [f2_admin,setf2A] = useState()
     const [review,setReview] = useState()
     const [rev1_email,setRev1_email] = useState()
     const [rev2_email,setRev2_email] = useState()
     const [rerr,setRerr] = useState()
     const navigate = useNavigate()
-    const searchInput = useRef();
-
-    const options = [
-      {
-        name: 'Kamal',value:'1',email:'kk@'
-      },
-      {
-        name: 'Ka',value:'2',email:'aa@'
-      }
-    ];
-    
-    // const handleFilter = (items) => {
-    //     return (searchValue) => {
-    //       if (searchValue.length === 0) {
-    //         return options;
-    //       }
-    //       const updatedItems = items.map((list) => {
-    //         const newItems = list.items.filter((item) => {
-    //           return item.name.toLowerCase().includes(searchValue.toLowerCase());
-    //         });
-    //         return { ...list, items: newItems };
-    //       });
-    //       return updatedItems;
-    //     };
-    //   };
-
-    const filter = (searchValue) =>{
-        const newItems = admins.filter((item) => {
-            return item.name.toLowerCase().includes(searchValue.toLowerCase());
-        });
-        setf1A(newItems);        
-    }
-
-    const filter2 = (searchValue) =>{
-        const newItems = admins.filter((item) => {
-            return item.name.toLowerCase().includes(searchValue.toLowerCase());
-        });
-        setf2A(newItems);        
-    }
-
-    // const options = [
-    //     {name: 'Swedish', value: 'sv'},
-    //     {name: 'English', value: 'en'},
-    //     {
-    //         type: 'group',
-    //         name: 'Group name',
-    //         items: [
-    //             {name: 'Spanish', value: 'es'},
-    //         ]
-    //     },
-    // ];
 
     const Credentials = async ()=>{
         try{
@@ -181,17 +126,6 @@ function Assign(){
     useEffect(()=>{
         Credentials()
     },[])
-    async function onAsyncChange(selectedValue) {
-        console.log("userSelected value is = ", selectedValue);
-    
-        // but maybe after some validation done on BE actual value didn't change (equals to previous)
-        await new Promise((res) => setTimeout(() => res(), 1000));
-    
-        console.log(
-          "still reusing previous value for SelectSearch = ",
-          options[0].email
-        );
-      }
     return(
         <>
             <Homea />
@@ -295,40 +229,28 @@ function Assign(){
                                         
                                         <div className='select'>
                                             <p>Reviewer 1</p>
-                                            <input onKeyDown={e=>setr1o(true)} type={'search'} className='sr' onClick={e=>{setr1o(!r1o)}} onChange={(e)=>filter(e.target.value)} placeholder={'Search Reviewer 1'}>
-                                                </input>
-                                                {r1 ? <p>Selected : <b>{r1}</b></p> : ''}
+                                            <p className='sr' onClick={e=>{setr1o(!r1o)}}>{r1 ? r1 : '--- Select Reviewer 1 ---'}</p>
                                             <div className={r1o ? 'active option' : 'option'}>
                                                 {
-                                                    f1_admin ? f1_admin.map((e,i)=>{
+                                                    admins ? admins.map((e,i)=>{
                                                         return(
                                                             <p onClick={ee=>{setR1(e.name);setR1_email(e.email);setr1o(!r1o)}} key={i}>{e.name}</p>
                                                         )
-                                                    }) : admins.map((e,i)=>{
-                                                        return(
-                                                            <p onClick={ee=>{setR1(e.name);setR1_email(e.email);setr1o(!r1o)}} key={i}>{e.name}</p>
-                                                        )
-                                                    })
+                                                    }) : null
                                                 }
                                             </div>
                                         </div>
                                         
                                         <div className='select'>
                                             <p>Reviewer 2</p>
-                                            <input onKeyDown={e=>setr2o(true)} type={'search'} className='sr' onClick={e=>{setr2o(!r2o)}} onChange={(e)=>filter2(e.target.value)} placeholder={'Search Reviewer 2'}>
-                                                </input>
-                                                {r2 ? <p>Selected : <b>{r2}</b></p> : ''}
+                                            <p className='sr' onClick={e=>{setr2o(!r2o)}}>{r2 ? r2 : '--- Select Reviewer 2 ---'}</p>
                                             <div className={r2o ? 'active option' : 'option'}>
                                                 {
-                                                    f2_admin ? f2_admin.map((e,i)=>{
+                                                    admins ? admins.map((e,i)=>{
                                                         return(
                                                             <p onClick={ee=>{setR2(e.name);setR2_email(e.email);setr2o(!r2o)}} key={i}>{e.name}</p>
                                                         )
-                                                    }) : admins.map((e,i)=>{
-                                                        return(
-                                                            <p onClick={ee=>{setR2(e.name);setR2_email(e.email);setr2o(!r2o)}} key={i}>{e.name}</p>
-                                                        )
-                                                    })
+                                                    }) : null
                                                 }
                                             </div>
                                         </div>
@@ -416,24 +338,34 @@ function Assign(){
                             onSubmit={(values, { setSubmitting}) => {
                                 setTimeout(async () => {
                                     console.log(values)
-                                    const res = await fetch("/reviewers",{
-                                        method: "PUT",
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify({
-                                            comment : values.comment,
-                                            status : values.a_r,
-                                            file : file.file,
-                                            file_id : review.id,
-                                            rev1_email : rev1_email,
-                                            rev2_email : rev2_email
+                                    if(values.a_r === ''){
+                                        console.log('Nodfile')
+                                    }
+                                    else{
+                                        const res = await fetch("/reviewers",{
+                                            method: "PUT",
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                comment : values.comment,
+                                                status : values.a_r,
+                                                file : file.file,
+                                                file_id : review.id,
+                                                rev1_email : rev1_email,
+                                                rev2_email : rev2_email
+                                            })
                                         })
-                                    })
                                 
-                                    const data = await res.json()
-                                    console.log(data)
-                                    window.location.reload(true)
+                                        const data = await res.json()
+                                        console.log(data)
+                                        // window.location.reload(true)
+                                        if(res.status === 422 || !data){
+                                            alert(data.error)
+                                        }
+                                        else{
+                                            window.location.reload(true)
+                                        }}
                                 }, 200);
                             }}
                         >
