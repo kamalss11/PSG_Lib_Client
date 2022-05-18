@@ -51,13 +51,11 @@ function Login(){
             })
     
             const datas = await res.json()
-            console.log(datas)
 
             if(!datas.error){
                 navigate('/dashboard')
             }
             else{
-                console.log(datas.error)
             }
         }
         catch(err){
@@ -92,7 +90,6 @@ function Login(){
 
                         onSubmit={(values, { setSubmitting,resetForm }) => {
                             setTimeout(async () => {
-                                console.log(values)
                                 const res = await fetch("/login",{
                                     method: "POST",
                                     headers: {
@@ -105,7 +102,6 @@ function Login(){
                                 })
 
                                 const data = await res.json()
-                                console.log(data)
                                 if(res.status === 400 || !data){
                                     alert(data.error)
                                 }

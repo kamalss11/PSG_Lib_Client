@@ -55,13 +55,11 @@ function Dashboard(){
             })
     
             const datas = await res.json()
-            console.log(datas)
 
             if(!datas.error){
                 setuData(datas)
             }
             else{
-                console.log(datas.error)
                 navigate('/login')
             }
         }
@@ -139,7 +137,7 @@ function Dashboard(){
 
                                         <div className='fields'>
                                             <label htmlFor='f'>Select File</label><br />
-                                            <input id='f' name='file' type='file' onChange={e=>{setFile(e.target.files[0]); console.log(e.target.files[0])}} />
+                                            <input id='f' accept=".doc, .docx,.pdf" name='file' type='file' onChange={e=>{setFile(e.target.files[0]); console.log(e.target.files[0])}} />
                                             {filee ? <p className='error'>This field is Required</p> : null}
                                         </div>
 
@@ -162,7 +160,7 @@ function Dashboard(){
                                         <tbody>
                                         {
                                             udata.user.map((e,i)=>{
-                                                const {file,title,id} = e
+                                                const {file,title,status,id} = e
                                                 
                                                 if(file){
                                                     return(
@@ -176,22 +174,7 @@ function Dashboard(){
                                                             </td>
                                                             
                                                             <td>
-                                                                {
-                                                                    udata && udata.review  ? udata.review.map((ee,ii)=>{
-                                                                        if(e.file === ee.file){
-                                                                            return(
-                                                                                <span key={ii}>{ee.r1_status}</span>
-                                                                            )
-                                                                        }
-
-                                                                        // if(e.file != ee.file){
-                                                                        //     return(
-                                                                        //         <span key={ii}>OnProcessing</span>
-                                                                        //     )
-                                                                        // }
-
-                                                                    }) : <p>OnProcessing</p>
-                                                                }
+                                                                {status}
                                                             </td>
                                                         </tr>
                                                     )
